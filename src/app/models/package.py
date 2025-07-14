@@ -1,5 +1,5 @@
 
-from sqlalchemy import Column, Integer, String, Text, DECIMAL, Boolean, ForeignKey, TIMESTAMP
+from sqlalchemy import Column, Integer, String, Text, DECIMAL, Boolean, ForeignKey, TIMESTAMP, Date
 from sqlalchemy.sql import func
 from app.database import Base
 
@@ -18,5 +18,8 @@ class Package(Base):
     image_url = Column(Text)
     rating = Column(DECIMAL(2, 1))
     is_active = Column(Boolean, default=True)
+    on_deal = Column(Boolean, default=False)
+    deal_start_date = Column(Date)
+    deal_end_date = Column(Date)
     created_at = Column(TIMESTAMP, server_default=func.now())
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
