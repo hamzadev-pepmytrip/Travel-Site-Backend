@@ -10,3 +10,8 @@ class Destination(Base):
     country_name = Column(String(255), nullable=False)
     region = Column(String(255), nullable=False)
     slug = Column(String(255), unique=True, index=True, nullable=False)
+    city = Column(String(255), nullable=True)
+    description = Column(String, nullable=True)
+    airport_code = Column(String(10), nullable=True)
+    airport = Column(String(255), nullable=True)
+    image_url = Column(String(255), nullable=True)

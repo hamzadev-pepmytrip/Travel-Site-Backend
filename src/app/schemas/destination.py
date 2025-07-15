@@ -5,6 +5,13 @@ class DestinationBase(BaseModel):
     country_name: str
     region: str
     slug: str
+    city: Optional[str] = None
+    description: Optional[str] = None
+    airport_code: Optional[str] = None
+    airport: Optional[str] = None
+    image_url: Optional[str] = None
+
+    
 
 class DestinationCreate(DestinationBase):
     pass

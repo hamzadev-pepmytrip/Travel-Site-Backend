@@ -34,3 +34,19 @@ def update_destination(destination_id: int, data: DestinationUpdate, db: Session
     db.commit()
     db.refresh(destination)
     return destination
+
+
+@router.get("/slug/{slug}", response_model=DestinationOut)
+def get_destination_by_slug(slug: str, db: Session = Depends(get_db)):
+    destination = db.query(Destination).filter(Destination.slug == slug).first()
+    if not destination:
+        raise HTTPException(status_code=404, detail="Destination not found")
+    return destination
+
+
+@router.get("/{destination_id}", response_model=DestinationOut)
+def get_destination(destination_id: int, db: Session = Depends(get_db)):
+    destination = db.query(Destination).get(destination_id)
+    if not destination:
+        raise HTTPException(status_code=404, detail="Destination not found")
+    return destination
