@@ -61,3 +61,11 @@ def update_package_deal(package_id: int, data: PackageCreate, db: Session = Depe
     db.commit()
     db.refresh(package)
     return package
+
+
+@router.get("/slug/{slug}", response_model=PackageOut)
+def get_package_by_slug(slug:str, db: Session = Depends(get_db)):
+    package = db.query(Package).filter(Package.slug == slug).first()
+    if not package:
+        raise HTTPException(status_code=404, detail="Package not found")
+    return package
