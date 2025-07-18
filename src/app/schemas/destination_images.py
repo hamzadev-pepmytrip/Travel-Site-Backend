@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 
 class DestinationImageBase(BaseModel):
     destination_id: int
-    image_url: str
+    image_url: HttpUrl
 
 class DestinationImageCreate(DestinationImageBase):
     pass
